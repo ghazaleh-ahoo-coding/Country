@@ -45,7 +45,7 @@ Users can search by country name, filter by region, and view key information for
    git clone <your-github-repo-link>
 
 ### Home Page
-![Home Page](./screenshots/Home.png)
+![Home Page](./screenshot/Home.png)
 
 ### Results Page
-![Results Page](./screenshots/Result.png)
+![Results Page](./screenshot/Result.png)
