@@ -42,7 +42,7 @@ Users can search by country name, filter by region, and view key information for
 
 1. Clone the repository:
    ```bash
-   git clone <your-github-repo-link>
+   git clone <https://github.com/ghazaleh-ahoo-coding/Country.git>
 
 ### Home Page
 ![Home Page](./screenshot/Home.png)
