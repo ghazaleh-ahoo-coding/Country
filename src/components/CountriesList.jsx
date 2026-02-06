@@ -1,5 +1,6 @@
 import React from "react";
 import CountryCard from "./CountryCard";
+import "./CountriesList.css";
 
 
 export default function CountriesList({ countries }) {

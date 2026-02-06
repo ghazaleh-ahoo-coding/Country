@@ -1,0 +1,55 @@
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+/* Search box with icon */
+.controls input[type="text"] {
+  padding: 10px 40px 10px 15px; /* leave space for icon */
+  width: 220px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg fill='gray' xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M21 21l-4.35-4.35M5 11a6 6 0 1112 0 6 6 0 01-12 0z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 10px center;
+  background-size: 20px 20px;
+  transition: border 0.3s;
+}
+
+.controls input[type="text"]:focus {
+  border-color: #4f46e5;
+  outline: none;
+}
+
+/* Region dropdown */
+.controls select {
+  padding: 10px 15px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+  background-color: #fff;
+  cursor: pointer;
+}
+
+/* Clear Filters button with gradient */
+.clear-btn {
+  padding: 10px 20px;
+  background: linear-gradient(135deg, #ff6b6b, #ff8e53);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.clear-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0px 6px 12px rgba(255, 107, 107, 0.4);
+}
