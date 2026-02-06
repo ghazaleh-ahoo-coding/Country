@@ -1,24 +1,29 @@
 import React from "react";
 import "./Controls.css";
 
-
-export default function Controls({ search, setSearch, region, setRegion, clearFilters }) {
+function Controls({ search, setSearch, region, setRegion, clearFilters }) {
   return (
     <div className="controls">
-      <input
-        type="text"
-        placeholder="Search country..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
-      />
+      <div className="search-box">
+        <span className="search-icon">🔍</span>
+        <input
+          type="text"
+          placeholder="Search for a country..."
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+        />
+      </div>
 
-      <select value={region} onChange={(e) => setRegion(e.target.value)}>
+      <select
+        value={region}
+        onChange={(e) => setRegion(e.target.value)}
+      >
         <option value="all">All</option>
-        <option value="Africa">Africa</option>
-        <option value="Americas">Americas</option>
-        <option value="Asia">Asia</option>
-        <option value="Europe">Europe</option>
-        <option value="Oceania">Oceania</option>
+        <option value="africa">Africa</option>
+        <option value="americas">Americas</option>
+        <option value="asia">Asia</option>
+        <option value="europe">Europe</option>
+        <option value="oceania">Oceania</option>
       </select>
 
       <button className="clear-btn" onClick={clearFilters}>
@@ -27,3 +32,5 @@ export default function Controls({ search, setSearch, region, setRegion, clearFi
     </div>
   );
 }
+
+export default Controls;

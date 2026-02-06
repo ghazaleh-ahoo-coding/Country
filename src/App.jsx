@@ -1,46 +1,51 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import Controls from "./components/Controls";
 import CountriesList from "./components/CountriesList";
 import "./App.css";
 
 function App() {
   const [countries, setCountries] = useState([]);
-  const [loading, setLoading] = useState(false);
+  const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [search, setSearch] = useState("");
   const [region, setRegion] = useState("all");
-  const [hasInteracted, setHasInteracted] = useState(false); // ✅ key fix
 
   const clearFilters = () => {
     setSearch("");
     setRegion("all");
-    setHasInteracted(false); // reset interaction
+    setError(null);
   };
 
   useEffect(() => {
     const fetchCountries = async () => {
       setLoading(true);
-      setError(null);
 
       let url = "https://restcountries.com/v3.1/all";
 
+      
       if (search.length >= 2) {
         url = `https://restcountries.com/v3.1/name/${search}`;
-        setHasInteracted(true);
-      } else if (region !== "all") {
+      }
+      
+      else if (region !== "all") {
         url = `https://restcountries.com/v3.1/region/${region}`;
-        setHasInteracted(true);
       }
 
       try {
         const res = await fetch(url);
-        if (!res.ok) throw new Error("Failed to fetch countries");
+
+        if (!res.ok) {
+          throw new Error("Failed to fetch countries");
+        }
+
         const data = await res.json();
         setCountries(data);
+        setError(null); 
       } catch (err) {
-        // ✅ show error ONLY after user interaction
-        if (hasInteracted) {
+
+        if (search.length >= 2 || region !== "all") {
           setError(err.message);
+          setCountries([]);
         }
       } finally {
         setLoading(false);
@@ -48,7 +53,7 @@ function App() {
     };
 
     fetchCountries();
-  }, [search, region, hasInteracted]);
+  }, [search, region]);
 
   return (
     <div className="app">
@@ -64,14 +69,14 @@ function App() {
 
       {loading && <p className="status">Loading countries...</p>}
 
-      {!loading && error && (
+      {error && (
         <div className="status error">
           <p>Error: {error}</p>
-          <button onClick={() => window.location.reload()}>Retry</button>
+          <button onClick={clearFilters}>Retry</button>
         </div>
       )}
 
-      {!loading && !error && hasInteracted && countries.length === 0 && (
+      {!loading && !error && countries.length === 0 && (
         <p className="status">No results found</p>
       )}
 
